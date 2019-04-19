@@ -1,6 +1,7 @@
 import { Router } from "express";
 import AllroomsController from "./controllers/allrooms.controller";
 import UserController from "./controllers/user.controller";
+import RoomController from "./controllers/room.controller";
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.delete("/allrooms", AllroomsController.delete);
 router.get("/users", UserController.get);
 
 // Route: /room
+router.get("/room/:roomId", RoomController.get);
 
 export default router;

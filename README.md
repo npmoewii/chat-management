@@ -3,10 +3,15 @@
 
 ## Development
 
+### Steps:
+1. install dependency by using `npm install`
+2. run apache and mysql database
+3. import database by using file: database.sql
+4. run development by using `npm run dev`
+5. for testing: `npm test`
+
 ### install dependency
 `npm install`
-
-### Import database using database.sql
 
 ### Dev run:
 `npm run dev`

@@ -4,9 +4,10 @@ class AllroomsController {
   static async get(req, res) {
     try {
       const rooms = await RoomModel.get();
-      res.status(200).json(rooms);
+      return res.status(200).json(rooms);
     } catch (e) {
       console.error(e);
+      res.status(500).json("Internal server error");
     }
   }
 
@@ -16,9 +17,10 @@ class AllroomsController {
       if (room) {
         return res.status(201).json({ id: room["roomId"] });
       }
-      res.status(404).json(`${req.body.id} already exists`);
+      return res.status(404).json(`${req.body.id} already exists`);
     } catch (e) {
       console.error(e);
+      res.status(500).json("Internal server error");
     }
   }
 
@@ -30,9 +32,10 @@ class AllroomsController {
         const newRoom = await RoomModel.create(roomId);
         return res.status(201).json({ id: newRoom["roomId"] });
       }
-      res.status(200).json({ id: room["roomId"] });
+      return res.status(200).json({ id: room["roomId"] });
     } catch (e) {
       console.error(e);
+      res.status(500).json("Internal server error");
     }
   }
 
@@ -43,9 +46,10 @@ class AllroomsController {
       if (result) {
         return res.status(200).json(`${roomId} Is deleted`);
       }
-      res.status(404).json("Room id is not found");
+      return res.status(404).json("Room id is not found");
     } catch (e) {
       console.error(e);
+      res.status(500).json("Internal server error");
     }
   }
 }

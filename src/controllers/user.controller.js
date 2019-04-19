@@ -4,9 +4,10 @@ class UserController {
   static async get(req, res) {
     try {
       const users = await UserModel.get();
-      res.status(200).json(users);
+      return res.status(200).json(users);
     } catch (e) {
       console.error(e);
+      res.status(500).json("Internal server error");
     }
   }
 }

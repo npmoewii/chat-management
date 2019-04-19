@@ -5,9 +5,10 @@ class Room {
    * @returns {Array} Existing rooms
    */
   async get() {
-    let rooms = [];
+    let rooms = null;
     try {
       const [rows] = await conn.execute("SELECT * FROM `room`");
+      rooms = [];
       rows.forEach(row => rooms.push(row.roomId));
     } catch (e) {
       console.error(e);
@@ -16,7 +17,31 @@ class Room {
     }
   }
 
-  getMember(roomId) {}
+  /**
+   *
+   * @param {string} roomId
+   * @return {Array} Return array of user in the roomId, if no roomId return null
+   */
+  async getMember(roomId) {
+    let members = null;
+    try {
+      const room = await this.find(roomId);
+      if (room) {
+        const [rows] = await conn.execute(
+          "SELECT * FROM `room_member` WHERE `roomId` = ?",
+          [roomId]
+        );
+        members = [];
+        if (rows.length > 0) {
+          rows.forEach(row => members.push(row["username"]));
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      return members;
+    }
+  }
 
   /**
    *
