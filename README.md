@@ -5,16 +5,25 @@
 
 ### Steps:
 1. install dependency by using `npm install`
-2. run apache and mysql database
+2. run mysql database
 3. import database by using file: database.sql
-4. run development by using `npm run dev`
-5. for testing: `npm test`
+4. run development by using `npm start`
+5. [for testing:](#Dev-test) `npm test`
 
-### install dependency
-`npm install`
+### Install dependency
+```
+npm install
+```
 
 ### Dev run:
-`npm run dev`
+```
+npm start
+```
 
-### Dev test:
-`npm test`
+### [](#Dev-test) Dev test:
+Require package
+1. pytest: `pip install pytest`
+2. requests: `pip install requests`
+```
+npm test
+```
