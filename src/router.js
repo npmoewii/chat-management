@@ -20,5 +20,8 @@ router.get("/users", UserController.get);
 
 // Route: /room
 router.get("/room/:roomId", RoomController.get);
+router.post("/room/:roomId", RoomController.put);
+router.put("/room/:roomId", RoomController.put);
+router.delete("/room/:roomId", RoomController.delete);
 
 export default router;

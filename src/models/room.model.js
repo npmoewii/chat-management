@@ -17,6 +17,19 @@ class Room {
     }
   }
 
+  async join(roomId, username) {
+    try {
+      const [rows] = await conn.execute(
+        "INSERT INTO `room_member`(roomId, username) VALUES (?, ?)",
+        [roomId, username]
+      );
+      return rows["affectedRows"] > 0;
+    } catch (e) {
+      console.error(e);
+    }
+    return false;
+  }
+
   /**
    *
    * @param {string} roomId
@@ -41,6 +54,25 @@ class Room {
     } finally {
       return members;
     }
+  }
+
+  /**
+   *
+   * @param {string} roomId
+   * @param {string} username
+   * @return {boolean} Return true if deleted success
+   */
+  async leaveRoom(roomId, username) {
+    try {
+      const [res] = await conn.execute(
+        "DELETE FROM `room_member` WHERE roomId=? and username=?",
+        [roomId, username]
+      );
+      return res["affectedRows"] > 0;
+    } catch (e) {
+      console.error(e);
+    }
+    return false;
   }
 
   /**

@@ -112,7 +112,6 @@ def test_get_members(clients, room_name):
     assert len(r) == 0
 
 
-@pytest.mark.skip
 def test_join_room(clients, room_name):
     clients[0].remove_room(room_name)
     clients[0].add_newroom(room_name)
@@ -131,7 +130,6 @@ def test_join_room(clients, room_name):
         assert username in members
 
 
-@pytest.mark.skip
 def test_leave_room(clients, room_name):
     clients[0].remove_room(room_name)
     clients[0].add_newroom(room_name)
