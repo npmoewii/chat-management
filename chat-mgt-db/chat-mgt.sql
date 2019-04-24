@@ -24,3 +24,8 @@ CREATE TABLE `room_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 COMMIT;
+
+DROP user 'chat-mgt'@'%';
+CREATE USER 'chat-mgt'@'%' IDENTIFIED WITH mysql_native_password BY '1234';
+GRANT ALL PRIVILEGES ON `chat_management`.* TO 'chat-mgt'@'%';
+FLUSH PRIVILEGES;

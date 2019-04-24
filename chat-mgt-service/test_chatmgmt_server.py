@@ -9,9 +9,11 @@ import pytest
 
 
 # configuration for the location of test servers
+uri = 'localhost'
+# uri = 'http://192.168.99.100' # Due to using docker toolbox
 servers = [
-    'http://localhost:5000',
-    # 'http://localhost:6000'
+    uri + ':5000',
+    uri + ':5001'
 ]
 
 
@@ -144,7 +146,6 @@ def test_leave_room(clients, room_name):
     assert status_code == 404
 
 
-@pytest.mark.skip
 def test_join_room_multi_servers(clients, room_name):
     assert len(clients) > 1
     clients[0].remove_room(room_name)

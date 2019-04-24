@@ -1,0 +1,32 @@
+version: "2.2"
+services:
+  chat-mgt-service:
+    build: chat-mgt-service
+    container_name: chat-mgt-service
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
+    links:
+      - db:db
+    depends_on:
+      - db
+    environment:
+      - PORT=5000
+      - MYSQL_HOST=db
+  chat-mgt-service-backup:
+    build: chat-mgt-service
+    container_name: chat-mgt-service-backup
+    expose:
+      - "5001"
+    ports:
+      - "5001:5001"
+    links:
+      - db:db
+    depends_on:
+      - db
+    environment:
+      - PORT=5001
+      - MYSQL_HOST=db
+  db:
+    build: chat-mgt-db
