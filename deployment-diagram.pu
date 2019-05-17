@@ -1,0 +1,21 @@
+@startuml Deployment diagram - Chat management server
+
+
+node "Linux/Windows/MacOS" as webServer <<device>> {
+    node Docker {
+        node "mysql" as dbServer <<device>> {
+            artifact "MySQL database" <<artifact>>
+        }
+        node "NodeJS" as nodejs1 {
+            artifact "Backend server" as backend1 <<artifact>>
+        }
+        node "NodeJS" as nodejs2 {
+            artifact "Backend server" as backend2 <<artifact>>
+        }
+    }
+}
+
+nodejs1 -- dbServer : <<TCP:3306>>
+nodejs2 -- dbServer : <<TCP:3306>>
+
+@enduml
